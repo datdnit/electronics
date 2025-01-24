@@ -2,6 +2,7 @@ package com.hau.identity_service.validator;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+
 import java.lang.annotation.*;
 
 @Documented
@@ -9,7 +10,8 @@ import java.lang.annotation.*;
 @Target( { ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidEmailDomain {
-    String message() default "Invalid email domain, must be @gmail.com";
+    String message() default "";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
+
 }

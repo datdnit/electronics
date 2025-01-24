@@ -1,20 +1,18 @@
 package com.hau.identity_service.exception;
 
 public enum ErrorCode {
-    USER_EXISTED(1001, "User already exists")
+    UNCATEGORIZED("Uncategorized error"),
+    EMAIL_EXISTED("Email already exists"),
+    INVALID_EMAIL_DOMAIN("Invalid email domain, email must end with @gmail.com"),
+    PASSWORD_INVALID("Password must be at least 8 characters"),
+    USER_NOT_FOUND("User not found")
     ;
 
-    ErrorCode(int code, String message) {
-        this.code = code;
+    ErrorCode(String message) {
+
         this.message = message;
     }
-
-    private final int code;
     private final String message;
-
-    public int getCode() {
-        return code;
-    }
 
     public String getMessage() {
         return message;

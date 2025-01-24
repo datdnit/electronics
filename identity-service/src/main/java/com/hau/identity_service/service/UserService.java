@@ -20,7 +20,7 @@ public class UserService {
         User user = new User();
 
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new AppException(ErrorCode.USER_EXISTED);
+            throw new AppException(ErrorCode.EMAIL_EXISTED);
         }
 
         user.setEmail(request.getEmail());
@@ -30,8 +30,7 @@ public class UserService {
         user.setPhoneNumber(request.getPhoneNumber());
         user.setAddress(request.getAddress());
         user.setRoleId(request.getRoleId());
-        user.setCreatedAt(request.getCreatedAt());
-        user.setUpdatedAt(request.getUpdatedAt());
+
 
         return userRepository.save(user);
     }
@@ -39,12 +38,24 @@ public class UserService {
     public User updateUser(Integer userId, UserUpdateRequest request) {
         User user = getUserById(userId);
 
-        user.setPassword(request.getPassword());
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setPhoneNumber(request.getPhoneNumber());
-        user.setAddress(request.getAddress());
+        if (request.getPassword() != null) {
+            user.setPassword(request.getPassword());
+        }
+        if (request.getFirstName() != null) {
+            user.setFirstName(request.getFirstName());
+        }
+        if (request.getLastName() != null) {
+            user.setLastName(request.getLastName());
+        }
+        if (request.getPhoneNumber() != null) {
+            user.setPhoneNumber(request.getPhoneNumber());
+        }
+        if (request.getAddress() != null) {
+            user.setAddress(request.getAddress());
+        }
+
         user.setRoleId(request.getRoleId());
+
 
         return userRepository.save(user);
     }
@@ -55,10 +66,12 @@ public class UserService {
 
     public User getUserById(int id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
     }
 
     public void deleteUserById(int id) {
+        if(!userRepository.existsById(id))
+            throw  new AppException(ErrorCode.USER_NOT_FOUND);
         userRepository.deleteById(id);
     }
 }

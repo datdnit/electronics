@@ -3,20 +3,16 @@ package com.hau.identity_service.dto.request;
 import com.hau.identity_service.validator.ValidEmailDomain;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDate;
-
 public class UserCreationRequest {
-    @ValidEmailDomain
+    @ValidEmailDomain(message = "INVALID_EMAIL_DOMAIN")
     private String email;
-    @Size(min = 8, message = "Password must be at least 8 characters")
+    @Size(min = 8, message = "PASSWORD_INVALID")
     private String password;
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String address;
     private int roleId;
-    private LocalDate createdAt;
-    private LocalDate updatedAt;
 
     public String getEmail() {
         return email;
@@ -72,21 +68,5 @@ public class UserCreationRequest {
 
     public void setRoleId(int roleId) {
         this.roleId = roleId;
-    }
-
-    public LocalDate getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDate getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDate updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

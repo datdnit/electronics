@@ -1,5 +1,6 @@
 package com.hau.identity_service.validator;
 
+import com.hau.identity_service.exception.ErrorCode;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
