@@ -1,7 +1,6 @@
-package com.hau.identity_service.dto.request;
+package com.hau.identity_service.dto.response;
 
-import com.hau.identity_service.validator.ValidEmailDomain;
-import jakarta.validation.constraints.Size;
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -11,10 +10,10 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 
-public class UserCreationRequest {
-    @ValidEmailDomain(message = "INVALID_EMAIL_DOMAIN")
+
+public class UserResponse {
+    int id;
     String email;
-    @Size(min = 8, message = "PASSWORD_INVALID")
     String password;
     String firstName;
     String lastName;

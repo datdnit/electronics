@@ -1,5 +1,8 @@
 package com.hau.identity_service.exception;
 
+import lombok.Getter;
+
+@Getter
 public enum SuccessMessage {
     CREATED_USER("Created user success"),
     UPDATE_USER("Update user success"),
@@ -13,7 +16,4 @@ public enum SuccessMessage {
         this.message = message;
     }
 
-    public String getMessage() {
-        return message;
-    }
 }

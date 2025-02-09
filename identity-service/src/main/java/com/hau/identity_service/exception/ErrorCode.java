@@ -1,5 +1,8 @@
 package com.hau.identity_service.exception;
 
+import lombok.Getter;
+
+@Getter
 public enum ErrorCode {
     UNCATEGORIZED("Uncategorized error"),
     EMAIL_EXISTED("Email already exists"),
@@ -8,13 +11,10 @@ public enum ErrorCode {
     USER_NOT_FOUND("User not found")
     ;
 
+    private final String message;
+
     ErrorCode(String message) {
 
         this.message = message;
-    }
-    private final String message;
-
-    public String getMessage() {
-        return message;
     }
 }
